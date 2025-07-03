@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+</head>
+
+<style>
+
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  background: #222;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.section {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project {
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.project h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.project p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+}
+
+
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    gap: 1rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .project-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+</style>
+
+<body>
+
+  <header>
+    <div class="logo">MyPortfolio</div>
+    <nav id="navbar">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <h1>Hello, Alfaith Mae</h1>
+      <p>Web Developer | Designer | Tech Enthusiast</p>
+      <p>I build clean, responsive websites and love crafting simple user experiences.</p>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2><br>
+
+      <div class="project-list">
+  <a href="https://your-portfolio-site.com" class="project" target="_blank" rel="noopener">
+    <h3>Portfolio Website</h3>
+    <p>A personal site built with HTML, CSS, and JS.</p>
+  </a>
+
+  <a href=" https://immyatt.github.io/blog/" class="project" target="_blank" rel="noopener">
+    <h3>Blog</h3>
+    <p>A simple educational tour blog.</p>
+  </a>
+  <a href="https://gymmanagementxlb.xscpry.com/website/website.php?fbclid=IwY2xjawLT4KtleHRuA2FlbQIxMABicmlkETFSeHpualdrWlpuSXU3VXlLAR5rsNTVNXeSpRqiRVQ4cKU0adjJkxcnYlwRiTTq7NpjgGHhrvzfFqa96Z2Ssg_aem_ISr1ueH5dVfyip246_QGOQ" class="project" target="_blank" rel="noopener">
+    <h3>Gym Membership System</h3>
+    <p>Software Engineering project.</p>
+  </a>
+</div>
+
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact: +639855818035</h2>
+      <p>Email: luzonalfaithmae@gmail.com</p>
+      <p>LinkedIn: Alfaith Mae Luzon</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Alfaith Mae</p>
+  </footer>
+
+  <script>
+
+
+  </script>
+</body>
+</html>
