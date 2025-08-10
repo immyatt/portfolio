@@ -1,203 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <meta name="description" content="Professional web developer portfolio showcasing skills in HTML, CSS, JavaScript, PHP, and more.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-hover': 'scaleHover 0.3s ease-in-out',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="font-inter bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-lg" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold text-slate-800">Portfolio</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#hero" class="nav-link text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Home</a>
+                        <a href="#projects" class="nav-link text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Projects</a>
+                        <a href="#skills" class="nav-link text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Skills</a>
+                        <a href="#contact" class="nav-link text-slate-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-blue-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm rounded-lg mt-2">
+                    <a href="#hero" class="nav-link-mobile text-slate-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">Home</a>
+                    <a href="#projects" class="nav-link-mobile text-slate-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">Projects</a>
+                    <a href="#skills" class="nav-link-mobile text-slate-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">Skills</a>
+                    <a href="#contact" class="nav-link-mobile text-slate-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors duration-200">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<style>
-
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-html, body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f5f5f5;
-  color: #333;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
-header {
-  background: #222;
-  color: #fff;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-nav ul {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.section {
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
-}
-
-.project-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.project {
-  background: #fefefe;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-
-.project h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: #222;
-}
-
-.project p {
-  color: #555;
-  font-size: 0.95rem;
-}
-
-.project:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-  background: #f9f9f9;
-}
-
-
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #222;
-  color: #fff;
-  margin-top: 2rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  nav ul {
-    gap: 1rem;
-    font-size: 0.9rem;
-    flex-wrap: wrap;
-  }
-
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .project-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-</style>
-
-<body>
-
-  <header>
-    <div class="logo">MyPortfolio</div>
-    <nav id="navbar">
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-  </header>
-
-  <main>
-    <section id="about" class="section">
-      <h1>Hello, I'm Alfaith Mae</h1>
-      <p>Web Developer | Designer | Tech Enthusiast</p>
-      <p>I build clean, responsive websites and love crafting simple user experiences.</p>
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Profile Image -->
+                <div class="flex justify-center lg:justify-start animate-fade-in">
+                    <div class="relative">
+                        <div class="w-80 h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-100 transform hover:scale-105 transition-transform duration-300 profile-image">
+                            <img src="profile.jpg" 
+                                 alt="Profile Picture" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-xl -z-10"></div>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div class="text-center lg:text-left animate-slide-up">
+                    <h1 class="text-5xl lg:text-6xl font-bold text-slate-800 mb-4">
+                        <span id="user-name">Alfaith Mae Luzon</span>
+                    </h1>
+                    
+                    <h2 class="text-xl lg:text-2xl text-blue-600 font-semibold mb-6">
+                        Web Developer | Designer | Tech Enthusiast
+                    </h2>
+                    
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl">
+                        I build clean, responsive websites and love crafting simple user experiences
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                        <a href="CV.pdf" 
+                           download 
+                           class="cta-button bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>
+                            Download CV
+                        </a>
+                        
+                        <a href="#contact" 
+                           class="cta-button border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center justify-center">
+                            Get In Touch
+                        </a>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex gap-6 justify-center lg:justify-start">
+                        <a href="https://github.com/immyatt" 
+                           target="_blank" 
+                           class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        
+                        <a href="https://www.linkedin.com/in/alfaith-mae-luzon-161a13372/" 
+                           target="_blank" 
+                           class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        
+                        <a href="luzonalfaithmae@gmail.com" 
+                           class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2><br>
-
-      <div class="project-list">
-  <a href="https://your-portfolio-site.com" class="project" target="_blank" rel="noopener">
-    <h3>Portfolio Website</h3>
-    <p>A personal site built with HTML, CSS, and JS.</p>
-  </a>
-
-  <a href=" https://immyatt.github.io/blog/" class="project" target="_blank" rel="noopener">
-    <h3>Blog</h3>
-    <p>A simple educational tour blog.</p>
-  </a>
-  <a href="https://gymmanagementxlb.xscpry.com/website/website.php?fbclid=IwY2xjawLT4KtleHRuA2FlbQIxMABicmlkETFSeHpualdrWlpuSXU3VXlLAR5rsNTVNXeSpRqiRVQ4cKU0adjJkxcnYlwRiTTq7NpjgGHhrvzfFqa96Z2Ssg_aem_ISr1ueH5dVfyip246_QGOQ" class="project" target="_blank" rel="noopener">
-    <h3>Gym Membership System</h3>
-    <p>Software Engineering project.</p>
-  </a>
-</div>
-
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 mb-4">Featured Projects</h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills in web development, design, and problem-solving.
+                </p>
+            </div>
+            
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact: +639855818035</h2>
-      <p>Email: luzonalfaithmae@gmail.com</p>
-      <p>LinkedIn: Alfaith Mae Luzon</p>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 mb-4">Skills & Technologies</h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Here are the technologies and tools I work with to bring ideas to life.
+                </p>
+            </div>
+            
+            <!-- Skills Grid -->
+            <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
+                <!-- Skills will be dynamically loaded here -->
+            </div>
+            
+            <!-- Proficiency Overview -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-slate-800 mb-8 text-center">Proficiency Overview</h3>
+                <div id="proficiency-bars" class="space-y-6">
+                    <!-- Proficiency bars will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Alfaith Mae</p>
-  </footer>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 mb-4">Get In Touch</h2>
+                <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                    Have a project in mind or want to collaborate? I'd love to hear from you. Send me a message and I'll get back to you soon!
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg h-full">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-6 flex items-center">
+                            <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                            Let's Connect
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-slate-800 mb-2">Email</h4>
+                                <a href="mailto:your.email@example.com" class="text-blue-600 hover:text-blue-700 transition-colors">
+                                    luzonalfaithmae@gmail.com
+                                </a>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-slate-800 mb-3">Follow Me</h4>
+                                <div class="flex gap-3">
+                                    <a href="https://github.com/immyatt" target="_blank" class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/alfaith-mae-luzon-161a13372/" target="_blank" class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="luzonalfaithmae@gmail.com" class="social-link p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 transition-all duration-200 transform hover:scale-110">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <p class="text-sm text-slate-600">
+                                    I typically respond within 24 hours. Looking forward to hearing from you!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+                        
+                        <div class="relative">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-6">Send Message</h3>
+                            
+                            <form id="contact-form" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Name *</label>
+                                        <input type="text" 
+                                               id="name" 
+                                               name="name" 
+                                               required 
+                                               class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                               placeholder="Your full name">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+                                        <input type="email" 
+                                               id="email" 
+                                               name="email" 
+                                               required 
+                                               class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                               placeholder="your.email@example.com">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Message *</label>
+                                    <textarea id="message" 
+                                              name="message" 
+                                              required 
+                                              rows="5" 
+                                              class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                                              placeholder="Tell me about your project or just say hello!"></textarea>
+                                </div>
+                                
+                                <button type="submit" 
+                                        id="submit-btn"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none disabled:opacity-70">
+                                    <span id="submit-text">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        Send Message
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-slate-400">
+                    © 2025 <span id="footer-name">Alfaith Mae Luzon</span>. Built with HTML, CSS & JavaScript
+                </p>
+            </div>
+        </div>
+    </footer>
 
-
-  </script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
